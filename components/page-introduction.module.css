@@ -1,0 +1,19 @@
+.introduction {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-8) clamp(2rem, 4vw, 3rem);
+  padding-block-end: var(--space-8);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Rem-based flex bases let larger text stack the introduction earlier. */
+.text {
+  flex: 1.2 1 26rem;
+  min-width: 0;
+}
+
+.photograph {
+  flex: 1 1 22rem;
+  min-width: 0;
+}

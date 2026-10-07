@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/button";
+import { PageIntroduction } from "@/components/page-introduction";
 import { SiteShell } from "@/components/site-shell";
 import shared from "@/components/home/home.module.css";
 import editorial from "@/components/about/about.module.css";
@@ -12,12 +13,12 @@ export function QuotePage({ locale }: { locale: Locale }) {
   const content = getDictionary(locale).quote;
   return (
     <SiteShell locale={locale} page="quote">
-      <div className={`${shared.home} ${styles.page}`}>
-        <section className={editorial.intro} aria-labelledby="quote-page-heading">
+      <div className={shared.home}>
+        <PageIntroduction page="quote" headingId="quote-page-heading" imageAlt={content.imageAlt}>
           <p className={shared.eyebrow}>{content.intro.eyebrow}</p>
           <h1 id="quote-page-heading" className={editorial.heading}>{content.intro.heading}</h1>
           <p className={editorial.introText}>{content.intro.description}</p>
-        </section>
+        </PageIntroduction>
         <QuoteForm content={content.form} locale={locale} />
         <section className={styles.help} aria-labelledby="help-heading">
           <h2 id="help-heading">{content.help.heading}</h2>

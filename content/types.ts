@@ -61,6 +61,7 @@ export type ServiceScope = {
 };
 
 export type ServicesContent = {
+  imageAlt: string;
   intro: PageIntro;
   pricingAction: string;
   items: readonly {
@@ -74,13 +75,16 @@ export type ServicesContent = {
 };
 
 export type AboutContent = {
+  imageAlt: string;
   intro: PageIntro & { secondaryAction: string };
   principles: WorkingPrinciples;
   quote: HomeContent["quote"];
 };
 
 export type PricingContent = {
+  imageAlt: string;
   intro: PageIntro & { primaryAction: string };
+  vatNote: string;
   hourlyUnit: string;
   home: {
     heading: string;
@@ -110,11 +114,13 @@ export type PricingContent = {
 };
 
 export type ContactContent = {
+  imageAlt: string;
   intro: PageIntro;
   quote: { heading: string; description: string; action: string };
 };
 
 export type QuoteContent = {
+  imageAlt: string;
   intro: { eyebrow: string; heading: string; description: string };
   form: {
     heading: string;
@@ -141,6 +147,8 @@ export type QuoteContent = {
 
 export type Dictionary = {
   business: {
+    organizationLabel: string;
+    phoneLabel: string;
     emailLabel: string;
     areaLabel: string;
     serviceArea: string;
@@ -158,6 +166,7 @@ export type Dictionary = {
     homeLabel: string;
     primaryNavigation: string;
     footerNavigation: string;
+    footer: { homeLabel: string; quickLinksHeading: string };
     menu: string;
     navigation: Record<PageId, string>;
   };

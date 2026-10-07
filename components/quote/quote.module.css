@@ -1,4 +1,4 @@
-.page { max-width: 52rem; }
+.form, .help { width: 100%; max-width: 52rem; }
 .form { display: grid; gap: var(--space-6); }
 .form fieldset { min-width: 0; padding-block-start: var(--space-6); border-top: 1px solid var(--border); }
 .form legend { padding-inline-end: var(--space-4); font-size: 1.375rem; font-weight: 500; }

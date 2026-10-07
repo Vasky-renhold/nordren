@@ -329,34 +329,87 @@ h1 {
 .site-footer {
   background: var(--surface);
   border-top: 1px solid var(--border-subtle);
-  padding-block: var(--space-8);
+  padding-block: var(--space-6) var(--space-4);
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-6);
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-6) var(--space-8);
 }
 
-.site-footer .navigation-list {
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-4);
+.footer-columns > * {
+  min-width: 0;
 }
 
-.footer-contact {
-  margin-block-start: var(--space-4);
+.site-footer .brand-logo {
+  width: 7rem;
 }
 
-.footer-contact a {
+.footer-tagline {
+  max-width: 24ch;
+  margin-block-start: var(--space-3);
+  color: var(--text-muted);
+}
+
+.footer-heading {
+  margin-block-end: var(--space-2);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.site-footer a {
   display: inline-flex;
   align-items: center;
-  min-height: var(--target-size);
+  min-height: 2rem;
   max-width: 100%;
   overflow-wrap: anywhere;
   color: var(--brand-primary);
+}
+
+.footer-contact a,
+.footer-profiles a {
   text-decoration: underline;
+}
+
+.footer-navigation a {
+  min-height: 1.75rem;
+  padding-block: 0.125rem;
+}
+
+.footer-navigation a:hover,
+.footer-navigation a[aria-current="page"] {
+  text-decoration: underline;
+}
+
+.footer-navigation a[aria-current="page"] {
+  font-weight: 500;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-6);
+  margin-block-start: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  padding-block-start: var(--space-2);
+  color: var(--text-muted);
+}
+
+.footer-profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+@media (width < 48rem), (any-pointer: coarse) {
+  .site-footer a {
+    min-height: var(--target-size);
+  }
 }
 
 /* Reserve room for the native summary; its panel stays in normal document flow. */
@@ -450,11 +503,6 @@ h1 {
     display: none;
   }
 
-  .footer-content {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/button";
+import { PageIntroduction } from "@/components/page-introduction";
 import { QuoteCTA } from "@/components/home/quote-cta";
 import sharedStyles from "@/components/home/home.module.css";
 import editorialStyles from "@/components/about/about.module.css";
@@ -38,14 +39,15 @@ export function PricingPage({ locale }: { locale: Locale }) {
   return (
     <SiteShell locale={locale} page="pricing">
       <div className={sharedStyles.home}>
-        <section className={editorialStyles.intro} aria-labelledby="pricing-heading">
+        <PageIntroduction page="pricing" headingId="pricing-heading" imageAlt={content.imageAlt}>
           <p className={sharedStyles.eyebrow}>{content.intro.eyebrow}</p>
           <h1 id="pricing-heading" className={editorialStyles.heading}>{content.intro.heading}</h1>
           <p className={editorialStyles.introText}>{content.intro.description}</p>
+          <p className={styles.note}>{content.vatNote}</p>
           <div className={editorialStyles.actions}>
             <ButtonLink href={routes.quote[locale]}>{content.intro.primaryAction}</ButtonLink>
           </div>
-        </section>
+        </PageIntroduction>
 
         <section id="home" className={styles.section} aria-labelledby="home-price-heading">
           <div>

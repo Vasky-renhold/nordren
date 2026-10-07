@@ -2,6 +2,8 @@ import type { Dictionary } from "./types";
 
 export const en = {
   business: {
+    organizationLabel: "Org. no.",
+    phoneLabel: "Phone",
     "emailLabel": "Email",
     "areaLabel": "Service area",
     "serviceArea": "Oslo and nearby areas",
@@ -12,6 +14,7 @@ export const en = {
     }
   },
   quote: {
+    imageAlt: "Quote form on a clipboard beside cleaning cloths and a spray bottle",
     intro: {
       eyebrow: "Request a quote",
       heading: "Tell us what you need",
@@ -49,6 +52,7 @@ export const en = {
     help: { heading: "Not sure what you need?", contact: "Visit the contact page", services: "Explore our services" },
   },
   contact: {
+    imageAlt: "Desk with a laptop and phone beside a window",
     "intro": {
       "eyebrow": "Contact",
       "heading": "Contact Vasky",
@@ -61,6 +65,8 @@ export const en = {
     }
   },
   pricing: {
+    imageAlt: "Desk with a laptop, notebook and pen",
+  vatNote: "All prices include VAT.",
   "intro": {
     "eyebrow": "Pricing",
     "heading": "Cleaning prices",
@@ -184,6 +190,7 @@ export const en = {
     }
 },
   about: {
+    imageAlt: "Caddy of cleaning supplies in a bright bedroom",
   "intro": {
     "eyebrow": "About Vasky",
     "heading": "Cleaning starts with trust.",
@@ -221,6 +228,7 @@ export const en = {
     }
 },
   services: {
+    imageAlt: "Cleaner vacuuming a rug in a bright living room",
   "intro": {
       "eyebrow": "Our services",
       "heading": "Cleaning for your home",
@@ -333,6 +341,7 @@ export const en = {
     homeLabel: "Vasky – home",
     primaryNavigation: "Main navigation",
     footerNavigation: "Footer navigation",
+    footer: { homeLabel: "Home", quickLinksHeading: "Quick links" },
     menu: "Menu",
     navigation: {
       home: "Home",

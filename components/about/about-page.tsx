@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/button";
+import { PageIntroduction } from "@/components/page-introduction";
 import { QuoteCTA } from "@/components/home/quote-cta";
 import sharedStyles from "@/components/home/home.module.css";
 import { SiteShell } from "@/components/site-shell";
@@ -13,7 +14,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
   return (
     <SiteShell locale={locale} page="about">
       <div className={sharedStyles.home}>
-        <section className={styles.intro} aria-labelledby="about-heading">
+        <PageIntroduction page="about" headingId="about-heading" imageAlt={content.imageAlt}>
           <p className={sharedStyles.eyebrow}>{content.intro.eyebrow}</p>
           <h1 id="about-heading" className={styles.heading}>{content.intro.heading}</h1>
           <p className={styles.introText}>{content.intro.description}</p>
@@ -21,7 +22,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
           <div className={styles.actions}>
             <ButtonLink href={routes.services[locale]} variant="text">{content.intro.secondaryAction}</ButtonLink>
           </div>
-        </section>
+        </PageIntroduction>
 
         <section className={styles.editorial} aria-labelledby="principles-heading">
           <div>

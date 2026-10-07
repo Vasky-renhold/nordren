@@ -1,4 +1,5 @@
 import { ButtonLink } from "@/components/button";
+import { PageIntroduction } from "@/components/page-introduction";
 import sharedStyles from "@/components/home/home.module.css";
 import { SiteShell } from "@/components/site-shell";
 import { getDictionary } from "@/content";
@@ -12,15 +13,11 @@ export function ServicesPage({ locale }: { locale: Locale }) {
   return (
     <SiteShell locale={locale} page="services">
       <div className={sharedStyles.home}>
-        <section className={styles.intro} aria-labelledby="services-heading">
-          <div>
-            <p className={sharedStyles.eyebrow}>{content.intro.eyebrow}</p>
-            <h1 id="services-heading" className={styles.heading}>{content.intro.heading}</h1>
-          </div>
-          <div>
-            <p className={styles.lead}>{content.intro.description}</p>
-          </div>
-        </section>
+        <PageIntroduction page="services" headingId="services-heading" imageAlt={content.imageAlt}>
+          <p className={sharedStyles.eyebrow}>{content.intro.eyebrow}</p>
+          <h1 id="services-heading" className={styles.heading}>{content.intro.heading}</h1>
+          <p className={styles.introLead}>{content.intro.description}</p>
+        </PageIntroduction>
 
         <div className={styles.overview}>
           {content.items.map((service, index) => (

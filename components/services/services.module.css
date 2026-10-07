@@ -14,10 +14,15 @@
   text-wrap: balance;
 }
 
+.introLead,
 .lead,
 .details {
   max-width: 55ch;
   color: var(--text-muted);
+}
+
+.introLead {
+  margin-block-start: var(--space-6);
 }
 
 .actions {

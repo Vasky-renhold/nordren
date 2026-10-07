@@ -2,6 +2,8 @@ import type { Dictionary } from "./types";
 
 export const nb = {
   business: {
+    organizationLabel: "Org.nr.",
+    phoneLabel: "Telefon",
     "emailLabel": "E-post",
     "areaLabel": "Tjenesteområde",
     "serviceArea": "Oslo og nærliggende områder",
@@ -12,6 +14,7 @@ export const nb = {
     }
   },
   quote: {
+    imageAlt: "Tilbudsskjema på en skriveplate ved siden av kluter og en sprayflaske",
     intro: {
       eyebrow: "Be om tilbud",
       heading: "Fortell oss hva du trenger",
@@ -49,6 +52,7 @@ export const nb = {
     help: { heading: "Usikker på hva du trenger?", contact: "Se kontaktsiden", services: "Utforsk tjenestene" },
   },
   contact: {
+    imageAlt: "Arbeidsbord med bærbar datamaskin og telefon ved et vindu",
     "intro": {
       "eyebrow": "Kontakt",
       "heading": "Kontakt Vasky",
@@ -61,6 +65,8 @@ export const nb = {
     }
   },
   pricing: {
+    imageAlt: "Arbeidsbord med bærbar datamaskin, notatblokk og penn",
+  vatNote: "Alle priser er inkl. MVA.",
   "intro": {
     "eyebrow": "Priser",
     "heading": "Priser på renhold",
@@ -184,6 +190,7 @@ export const nb = {
     }
 },
   about: {
+    imageAlt: "Bøtte med rengjøringsutstyr i et lyst soverom",
   "intro": {
     "eyebrow": "Om Vasky",
     "heading": "Renhold handler også om tillit.",
@@ -221,6 +228,7 @@ export const nb = {
     }
 },
   services: {
+    imageAlt: "Renholder som støvsuger et teppe i en lys stue",
   "intro": {
       "eyebrow": "Våre tjenester",
       "heading": "Renhold for hjemmet",
@@ -333,6 +341,7 @@ export const nb = {
     homeLabel: "Vasky – forsiden",
     primaryNavigation: "Hovedmeny",
     footerNavigation: "Navigasjon i bunntekst",
+    footer: { homeLabel: "Hjem", quickLinksHeading: "Hurtiglenker" },
     menu: "Meny",
     navigation: {
       home: "Forside",
