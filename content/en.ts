@@ -35,6 +35,8 @@ export const en = {
       choose: "Choose an option",
       helpers: { timing: "A date or a period is fine. This does not confirm availability.", details: "Include tasks, priorities and access considerations. Up to 3000 characters." },
       expectation: "An enquiry is not a booking. Scope and timing still need to be confirmed before work is agreed.",
+      privacyNotice: "When you submit the form, we use your information to process your enquiry and contact you.",
+      privacyLink: "Read about privacy",
       honeypot: "Leave this field empty",
       noScript: "Enable JavaScript to send an enquiry. No information has been sent.",
       submit: "Send enquiry",
@@ -336,6 +338,83 @@ export const en = {
       "secondaryAction": "Contact us"
     },
   },
+  privacy: {
+    heading: "Privacy & Cookies",
+    authorityLink: "Read about your rights at Datatilsynet",
+    sections: [
+      {
+        id: "privacy",
+        heading: "Privacy",
+        paragraphs: ["Vasky processes personal information when you contact us or submit the quote form. This page explains what information the website receives, how it is used, and how to contact us about privacy."],
+      },
+      {
+        id: "information",
+        heading: "Information you send us",
+        paragraphs: ["The quote form requires your name, email address and the cleaning service you would like. The remaining fields are optional:"],
+        items: [
+          "Phone number",
+          "Property type",
+          "Approximate size",
+          "Number of rooms",
+          "Postcode, town or area",
+          "How often you would like cleaning",
+          "Preferred timing, entered as a date or period in a text field",
+          "Additional details about your needs",
+        ],
+        note: "The form does not require a street address. Your website language and a technical submission identifier are also processed when the enquiry is sent. Information you share by email or when contacting us in other ways forms part of your enquiry.",
+      },
+      {
+        id: "purpose",
+        heading: "Why we use your information",
+        paragraphs: ["We use your information to receive your enquiry, assess the cleaning work you would like, prepare and respond to your quote request, and communicate with you about the work."],
+      },
+      {
+        id: "delivery",
+        heading: "How your enquiry is sent",
+        paragraphs: [
+          "When you submit the quote form, your enquiry is processed through the website and sent to Vasky's business email address, post@vasky-renhold.no.",
+          "We use external technical service providers to operate the website and deliver enquiries. Resend currently sends email from the quote form and processes the information in your enquiry as part of email delivery.",
+        ],
+      },
+      {
+        id: "retention",
+        heading: "Storage",
+        paragraphs: [
+          "The Vasky website does not store quote submissions in an application database. Enquiries are delivered by email and may therefore remain in Vasky's business mailbox and relevant service-provider systems.",
+          "Information should not be kept longer than necessary to handle the enquiry and meet relevant business and legal obligations. This page does not specify a fixed deletion period. Contact us if you have questions about how your enquiry is retained.",
+        ],
+      },
+      {
+        id: "cookies",
+        heading: "Cookies",
+        paragraphs: [
+          "The current Vasky website does not intentionally set cookies or use analytics cookies, advertising cookies, marketing pixels or similar optional tracking technologies. It does not store tracking information in your browser's local storage or session storage either.",
+          "Ordinary technical processing still takes place when your browser and the services operating the website transfer and display content. This may include network information and your browser caching files. It does not mean that no technical information is processed.",
+          "If we later introduce optional analytics or marketing technology, we will update this information and introduce a consent mechanism where required before that technology is used.",
+        ],
+      },
+      {
+        id: "links",
+        heading: "External links",
+        paragraphs: ["The website links to services such as Facebook and Mittanbud. These are ordinary outbound links, not embedded tracking tools on the current Vasky website. Once you follow an external link, that service's own privacy and cookie practices apply."],
+      },
+      {
+        id: "rights",
+        heading: "Your rights",
+        paragraphs: ["Depending on the circumstances and the basis for processing, your rights may include access, correction, deletion, restriction of processing and objection where applicable. Contact us if you wish to exercise your rights or have questions about how your information is processed.", "You can lodge a complaint with Datatilsynet, the Norwegian Data Protection Authority."],
+      },
+      {
+        id: "contact",
+        heading: "Contact",
+        paragraphs: ["If you have questions about privacy or your enquiry, you can contact Vasky:"],
+      },
+      {
+        id: "updates",
+        heading: "Updates",
+        paragraphs: ["We may update this information if the website, service providers or the way we process information changes."],
+      },
+    ],
+  },
   shell: {
     skipToContent: "Skip to content",
     homeLabel: "Vasky – home",
@@ -350,6 +429,7 @@ export const en = {
       about: "About",
       contact: "Contact",
       quote: "Request a quote",
+      privacy: "Privacy & cookies",
     },
   },
   placeholder: "This page is under development. Content and features will be added later.",
@@ -361,6 +441,7 @@ export const en = {
     },
   },
   pages: {
+    privacy: { heading: "Privacy & Cookies", title: "Privacy & Cookies | Vasky", description: "Information about personal data, quote enquiries and cookies on the Vasky website." },
     home: { heading: "Vasky", title: "Vasky | Cleaning for homes and workplaces", description: "Cleaning for homes and workplaces. Explore home cleaning, move-out cleaning and window cleaning with Vasky." },
     services: { heading: "Services", title: "Cleaning services | Vasky", description: "Explore home cleaning, move-out cleaning and window cleaning. Tell us what you need so we can clarify the scope before preparing a quote." },
     pricing: { heading: "Pricing", title: "Pricing | Vasky", description: "View hourly rates for home and window cleaning, fixed move-out cleaning prices and additional services at Vasky." },

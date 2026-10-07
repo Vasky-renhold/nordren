@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent } fro
 import { Button } from "@/components/button";
 import type { QuoteContent } from "@/content/types";
 import type { Locale } from "@/lib/i18n/locales";
+import { routes } from "@/lib/i18n/routes";
 import { fieldLimits, frequencyOptions, quoteFields, serviceOptions, validateQuote, type QuoteErrors, type QuoteField, type QuoteValues } from "@/lib/quote-validation";
 import styles from "./quote.module.css";
 
@@ -131,6 +132,10 @@ export function QuoteForm({ content, locale }: { content: QuoteContent["form"]; 
         {field("details")}
       </fieldset>
       <p className={styles.helper}>{content.expectation}</p>
+      <p className={styles.helper}>
+        {content.privacyNotice}{" "}
+        <a className={styles.privacyLink} href={routes.privacy[locale]}>{content.privacyLink}</a>
+      </p>
       <div><Button type="submit" disabled={!ready || pending}>{pending ? content.pending : content.submit}</Button></div>
       <p role="status" className={styles.helper}>{pending ? content.pending : ""}</p>
     </form>

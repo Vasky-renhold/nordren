@@ -52,7 +52,7 @@ export function PricingPage({ locale }: { locale: Locale }) {
         <section id="home" className={styles.section} aria-labelledby="home-price-heading">
           <div>
             <h2 id="home-price-heading">{content.home.heading}</h2>
-            <p className={styles.rate}>{kroner(pricingRates.homeHourly)} <span>{content.hourlyUnit}</span></p>
+            <p className={styles.rate}>{pricingRates.homeHourly} <span>{locale === "nb" ? "kr/time" : "NOK/hour"}</span></p>
           </div>
           <div className={styles.details}>
             <Scope content={content.home.scope} />

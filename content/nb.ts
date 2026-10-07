@@ -35,6 +35,8 @@ export const nb = {
       choose: "Velg et alternativ",
       helpers: { timing: "Skriv gjerne en dato eller periode. Dette bekrefter ikke ledig kapasitet.", details: "Ta gjerne med oppgaver, prioriteringer og hensyn ved adkomst. Maks 3000 tegn." },
       expectation: "En forespørsel er ikke en bestilling. Omfang og tidspunkt må bekreftes før arbeidet avtales.",
+      privacyNotice: "Når du sender inn skjemaet, bruker vi opplysningene dine for å behandle forespørselen og kontakte deg.",
+      privacyLink: "Les om personvern",
       honeypot: "La dette feltet stå tomt",
       noScript: "JavaScript må være aktivert for å sende en forespørsel. Ingen opplysninger er sendt.",
       submit: "Send forespørsel",
@@ -336,6 +338,83 @@ export const nb = {
       "secondaryAction": "Kontakt oss"
     },
   },
+  privacy: {
+    heading: "Personvern og informasjonskapsler",
+    authorityLink: "Les om rettighetene dine hos Datatilsynet",
+    sections: [
+      {
+        id: "privacy",
+        heading: "Personvern",
+        paragraphs: ["Vasky behandler personopplysninger når du kontakter oss eller sender inn tilbudsskjemaet. Her forklarer vi hvilke opplysninger nettsiden tar imot, hvordan de brukes, og hvordan du kan kontakte oss om personvern."],
+      },
+      {
+        id: "information",
+        heading: "Opplysninger du sender til oss",
+        paragraphs: ["I tilbudsskjemaet må du oppgi navn, e-postadresse og ønsket rengjøringstjeneste. De øvrige feltene er valgfrie:"],
+        items: [
+          "Telefonnummer",
+          "Type bolig eller lokale",
+          "Omtrentlig størrelse",
+          "Antall rom",
+          "Postnummer, sted eller område",
+          "Hvor ofte du ønsker renhold",
+          "Ønsket tidspunkt, skrevet som dato eller periode i et tekstfelt",
+          "Tilleggsopplysninger om behovet ditt",
+        ],
+        note: "Skjemaet krever ikke en gateadresse. Språket du bruker på nettsiden og en teknisk identifikator for innsendingen behandles også når forespørselen sendes. Opplysninger du deler i e-post eller annen kontakt med oss, inngår i henvendelsen din.",
+      },
+      {
+        id: "purpose",
+        heading: "Hvorfor vi behandler opplysningene",
+        paragraphs: ["Vi bruker opplysningene til å ta imot henvendelsen, vurdere renholdet du ønsker, utarbeide og svare på tilbudsforespørselen og kommunisere med deg om oppdraget."],
+      },
+      {
+        id: "delivery",
+        heading: "Hvordan forespørselen sendes",
+        paragraphs: [
+          "Når du sender inn tilbudsskjemaet, behandles forespørselen gjennom nettsiden og sendes til Vaskys e-postadresse, post@vasky-renhold.no.",
+          "Vi bruker eksterne tekniske tjenesteleverandører for å drifte nettsiden og levere henvendelser. Resend brukes nå til å sende e-post fra tilbudsskjemaet. Opplysningene i forespørselen behandles av denne tjenesten som del av e-postleveringen.",
+        ],
+      },
+      {
+        id: "retention",
+        heading: "Lagring",
+        paragraphs: [
+          "Vaskys nettside lagrer ikke tilbudsforespørsler i en egen applikasjonsdatabase. Forespørsler leveres som e-post og kan derfor bli liggende i Vaskys e-postkasse og i relevante systemer hos tjenesteleverandørene.",
+          "Opplysninger skal ikke oppbevares lenger enn nødvendig for å håndtere henvendelsen og ivareta relevante forretningsmessige og rettslige forpliktelser. Vi oppgir ikke en fast slettefrist her. Kontakt oss hvis du har spørsmål om lagring av din henvendelse.",
+        ],
+      },
+      {
+        id: "cookies",
+        heading: "Informasjonskapsler",
+        paragraphs: [
+          "Den nåværende Vasky-nettsiden setter ikke bevisst informasjonskapsler og bruker ikke analyse- eller reklameinformasjonskapsler, markedsføringspiksler eller lignende valgfrie sporingsteknologier. Nettsiden lagrer heller ikke sporingsopplysninger i nettleserens lokale lagring eller øktlagring.",
+          "Vanlig teknisk behandling skjer likevel når nettleseren og tjenestene som drifter nettsiden, overfører og viser innhold. Dette kan omfatte nettverksopplysninger og nettleserens mellomlagring av filer. Det betyr ikke at ingen tekniske opplysninger behandles.",
+          "Hvis vi senere tar i bruk valgfri analyse- eller markedsføringsteknologi, oppdaterer vi informasjonen og innfører en løsning for samtykke der det er påkrevd, før teknologien tas i bruk.",
+        ],
+      },
+      {
+        id: "links",
+        heading: "Eksterne lenker",
+        paragraphs: ["Nettsiden lenker til tjenester som Facebook og Mittanbud. Dette er vanlige lenker, ikke innebygde sporingsverktøy på Vaskys nåværende nettside. Når du følger en ekstern lenke, gjelder den aktuelle tjenestens egne regler og praksis for personvern og informasjonskapsler."],
+      },
+      {
+        id: "rights",
+        heading: "Dine rettigheter",
+        paragraphs: ["Avhengig av situasjonen og grunnlaget for behandlingen kan du ha rett til innsyn, retting, sletting og begrensning av behandlingen, og til å protestere der det er aktuelt. Kontakt oss hvis du vil bruke rettighetene dine eller har spørsmål om hvordan opplysningene dine behandles.", "Du kan klage til Datatilsynet, som er tilsynsmyndighet for personvern i Norge."],
+      },
+      {
+        id: "contact",
+        heading: "Kontakt",
+        paragraphs: ["Har du spørsmål om personvern eller henvendelsen din, kan du kontakte Vasky:"],
+      },
+      {
+        id: "updates",
+        heading: "Oppdateringer",
+        paragraphs: ["Vi kan oppdatere denne informasjonen hvis nettsiden, tjenesteleverandørene eller måten vi behandler opplysninger på, endres."],
+      },
+    ],
+  },
   shell: {
     skipToContent: "Hopp til innhold",
     homeLabel: "Vasky – forsiden",
@@ -350,6 +429,7 @@ export const nb = {
       about: "Om oss",
       contact: "Kontakt",
       quote: "Be om tilbud",
+      privacy: "Personvern og informasjonskapsler",
     },
   },
   placeholder: "Denne siden er under utvikling. Innhold og funksjoner kommer senere.",
@@ -361,6 +441,7 @@ export const nb = {
     },
   },
   pages: {
+    privacy: { heading: "Personvern og informasjonskapsler", title: "Personvern og informasjonskapsler | Vasky", description: "Informasjon om personopplysninger, tilbudsforespørsler og informasjonskapsler på Vaskys nettside." },
     home: { heading: "Vasky", title: "Vasky | Renhold for hjem og arbeidsplasser", description: "Renhold for hjem og arbeidsplasser. Utforsk husvask, flyttevask og vindusvask hos Vasky." },
     services: { heading: "Tjenester", title: "Renholdstjenester | Vasky", description: "Utforsk husvask, flyttevask og vindusvask. Beskriv behovet ditt, så avklarer vi omfanget før et tilbud." },
     pricing: { heading: "Priser", title: "Priser | Vasky", description: "Se timepriser for husvask og vindusvask, fastpriser for flyttevask og priser på tilleggstjenester hos Vasky." },

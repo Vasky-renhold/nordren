@@ -1,6 +1,6 @@
 // Owner-supplied rates shared by both languages. Keep bands explicit; do not interpolate.
 export const pricingRates = {
-  homeHourly: 500,
+  homeHourly: 499,
   windowHourly: 500,
   moveOut: [
     { min: null, max: 35, price: 3000 },

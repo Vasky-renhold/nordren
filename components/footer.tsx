@@ -4,7 +4,7 @@ import { businessDetails, publicEmail } from "@/content/business";
 import type { Locale } from "@/lib/i18n/locales";
 import { routes, type PageId } from "@/lib/i18n/routes";
 
-const footerPages = ["home", "services", "pricing", "about", "contact", "quote"] as const satisfies readonly PageId[];
+const footerPages = ["home", "services", "pricing", "about", "contact", "quote", "privacy"] as const satisfies readonly PageId[];
 
 export function Footer({ locale, page }: { locale: Locale; page: PageId }) {
   const { shell: content, business, home } = getDictionary(locale);

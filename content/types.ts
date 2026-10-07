@@ -133,6 +133,8 @@ export type QuoteContent = {
     choose: string;
     helpers: { details: string; timing: string };
     expectation: string;
+    privacyNotice: string;
+    privacyLink: string;
     honeypot: string;
     noScript: string;
     submit: string;
@@ -145,6 +147,18 @@ export type QuoteContent = {
   help: { heading: string; contact: string; services: string };
 };
 
+export type PrivacyContent = {
+  heading: string;
+  authorityLink: string;
+  sections: readonly {
+    id: "privacy" | "information" | "purpose" | "delivery" | "retention" | "cookies" | "links" | "rights" | "contact" | "updates";
+    heading: string;
+    paragraphs: readonly string[];
+    items?: readonly string[];
+    note?: string;
+  }[];
+};
+
 export type Dictionary = {
   business: {
     organizationLabel: string;
@@ -155,6 +169,7 @@ export type Dictionary = {
     commercial: { heading: string; description: string; action: string };
   };
   quote: QuoteContent;
+  privacy: PrivacyContent;
   contact: ContactContent;
   pricing: PricingContent;
   about: AboutContent;

@@ -9,7 +9,7 @@ export function PageIntroduction({
   imageAlt,
   children,
 }: {
-  page: Exclude<PageId, "home">;
+  page: Exclude<PageId, "home" | "privacy">;
   headingId: string;
   imageAlt: string;
   children: ReactNode;

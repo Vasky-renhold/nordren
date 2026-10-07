@@ -6,6 +6,7 @@
 .field { min-width: 0; }
 .field label { display: block; font-weight: 500; margin-block-end: var(--space-2); }
 .helper { color: var(--text-muted); }
+.privacyLink { color: var(--brand-primary); text-decoration: underline; }
 .field .helper { margin-block-end: var(--space-2); }
 .field :is(input, select, textarea) {
   display: block; width: 100%; min-width: 0; min-height: 3rem;
