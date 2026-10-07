@@ -1,4 +1,5 @@
 import type { Dictionary } from "./types";
+import { pricingRates } from "./pricing-data";
 
 export const nb = {
   business: {
@@ -293,7 +294,7 @@ export const nb = {
           "id": "home",
           "title": "Husvask",
           "description": "Rengjøring av rom, kjøkken og bad i hjemmet ditt.",
-          "imageAlt": "Renholder vasker tregulvet i en lys stue."
+          "imageAlt": "Rengjort kjøkken med trepanel, grønne skap og tregulv."
         },
         {
           "id": "move-out",
@@ -442,11 +443,11 @@ export const nb = {
   },
   pages: {
     privacy: { heading: "Personvern og informasjonskapsler", title: "Personvern og informasjonskapsler | Vasky", description: "Informasjon om personopplysninger, tilbudsforespørsler og informasjonskapsler på Vaskys nettside." },
-    home: { heading: "Vasky", title: "Vasky | Renhold for hjem og arbeidsplasser", description: "Renhold for hjem og arbeidsplasser. Utforsk husvask, flyttevask og vindusvask hos Vasky." },
-    services: { heading: "Tjenester", title: "Renholdstjenester | Vasky", description: "Utforsk husvask, flyttevask og vindusvask. Beskriv behovet ditt, så avklarer vi omfanget før et tilbud." },
-    pricing: { heading: "Priser", title: "Priser | Vasky", description: "Se timepriser for husvask og vindusvask, fastpriser for flyttevask og priser på tilleggstjenester hos Vasky." },
-    about: { heading: "Om oss", title: "Om oss | Vasky", description: "Les om Vaskys tilnærming til renhold: tydelig kommunikasjon, respekt for hjem og arbeidsplasser og et avklart omfang før oppdraget." },
-    contact: { heading: "Kontakt", title: "Kontakt | Vasky", description: "Forbered en henvendelse om renhold til Vasky. Se hvilke opplysninger som er nyttige, og hvordan behov og praktiske detaljer avklares." },
-    quote: { heading: "Be om tilbud", title: "Be om tilbud | Vasky", description: "Beskriv renholdet du ønsker og de viktigste opplysningene om oppdraget." },
+    home: { heading: "Vasky", title: "Renhold i Oslo og nærliggende områder | Vasky", description: "Vasky tilbyr husvask, flyttevask og vindusvask i Oslo og nærliggende områder. Se tjenester og priser, eller be om et tilbud på renhold." },
+    services: { heading: "Tjenester", title: "Husvask, flyttevask og vindusvask | Vasky", description: "Utforsk Vaskys rengjøringstjenester for boliger i Oslo og nærliggende områder. Se hva husvask, flyttevask og vindusvask omfatter." },
+    pricing: { heading: "Priser", title: "Priser på husvask, flyttevask og vindusvask | Vasky", description: `Husvask ${pricingRates.homeHourly} kr/time og vindusvask ${pricingRates.windowHourly} kr/time. Se fastpriser for flyttevask og tilleggstjenester. Alle priser er inkl. MVA.` },
+    about: { heading: "Om oss", title: "Om Vasky | Renhold i Oslo og nærliggende områder", description: "Bli kjent med Vasky i Lommedalen og vår tilnærming til renhold: omtanke for hjemmet ditt, grundig arbeid og tydelige avtaler." },
+    contact: { heading: "Kontakt", title: "Kontakt Vasky | Renhold i Oslo", description: "Kontakt Vasky på telefon eller e-post om renhold i Oslo og nærliggende områder. Vi holder til i 1350 Lommedalen. Send gjerne en tilbudsforespørsel." },
+    quote: { heading: "Be om tilbud", title: "Be om tilbud på renhold | Vasky", description: "Be om tilbud på husvask, flyttevask eller vindusvask i Oslo og nærliggende områder. Beskriv boligen og behovet ditt i Vaskys tilbudsskjema." },
   },
 } satisfies Dictionary;

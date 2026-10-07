@@ -2,40 +2,58 @@ import type { Metadata } from "next";
 import { getDictionary } from "@/content";
 import type { Locale } from "@/lib/i18n/locales";
 import { routes, type PageId } from "@/lib/i18n/routes";
+import { absoluteSiteUrl, getSiteUrl, isSiteIndexingEnabled } from "@/lib/site-config";
+import { socialImage } from "@/lib/social-image";
 
-function getSiteUrl(): URL | undefined {
-  const value = process.env.SITE_URL;
-  if (!value) return undefined;
-
-  const url = new URL(value);
-  if (
-    !["https:", "http:"].includes(url.protocol) ||
-    url.username || url.password ||
-    url.pathname !== "/" || url.search || url.hash
-  ) {
-    throw new Error("SITE_URL must be an HTTP(S) origin without credentials, a path, query, or fragment.");
-  }
-  return url;
+export function getLanguageAlternates(page: PageId) {
+  const nb = absoluteSiteUrl(routes[page].nb);
+  const en = absoluteSiteUrl(routes[page].en);
+  if (!nb || !en) return undefined;
+  return {
+    nb,
+    en,
+    "x-default": nb,
+  };
 }
 
 export function getPageMetadata(page: PageId, locale: Locale): Metadata {
   const { title, description } = getDictionary(locale).pages[page];
   const siteUrl = getSiteUrl();
+  const canonical = absoluteSiteUrl(routes[page][locale]);
+  const imageUrl = absoluteSiteUrl(socialImage.path);
+  const images = imageUrl ? [{
+    url: imageUrl,
+    width: socialImage.width,
+    height: socialImage.height,
+    alt: socialImage.alt[locale],
+  }] : [];
 
   return {
     title,
     description,
-    // Placeholder content is not ready for search indexing.
-    robots: { index: false, follow: true },
+    robots: { index: isSiteIndexingEnabled(), follow: true },
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      siteName: "Vasky",
+      locale: locale === "nb" ? "nb_NO" : "en_US",
+      alternateLocale: locale === "nb" ? "en_US" : "nb_NO",
+      ...(canonical ? { url: canonical } : {}),
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: images.map(image => ({ url: image.url, alt: image.alt })),
+    },
     // Never let Next.js infer localhost or a preview host as the canonical domain.
     ...(siteUrl ? {
       metadataBase: siteUrl,
       alternates: {
-        canonical: new URL(routes[page][locale], siteUrl).href,
-        languages: {
-          nb: new URL(routes[page].nb, siteUrl).href,
-          en: new URL(routes[page].en, siteUrl).href,
-        },
+        canonical,
+        languages: getLanguageAlternates(page),
       },
     } : {}),
   };

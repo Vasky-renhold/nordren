@@ -1,8 +1,8 @@
-﻿# Nordren
+# Vasky
 
-Next.js App Router, React, TypeScript, and Tailwind CSS. The bilingual homepage and shared shell are implemented; other pages remain placeholders.
+Vasky's bilingual cleaning-company website uses Next.js App Router, React, TypeScript, and Tailwind CSS. The fourteen public routes cover home, services, pricing, about, contact, quotes, and privacy information.
 
-## Development and verification
+## Development and checks
 
 ```sh
 npm run dev
@@ -10,13 +10,13 @@ npm run lint
 npx next typegen
 npx tsc --noEmit
 npm run build
+node --test tests/*.test.mjs
+git diff --check
 ```
 
-Generate route types before standalone TypeScript checking on a fresh checkout or after moving routes. The production build also generates route types. Geist Sans uses next/font/google; a fresh build may need network access to download the font.
+Generate route types before standalone TypeScript checking on a fresh checkout. A fresh build may need network access for the existing Geist font download; fonts are self-hosted to visitors. Tests use Node's existing runner and TypeScript transpilation, without new packages or real email calls.
 
-## Languages and routes
-
-Norwegian Bokmål (nb) is the default. English (en) is secondary. There is no browser-language detection, automatic redirect, or i18n library.
+## Bilingual architecture
 
 | Page | Norwegian | English |
 | --- | --- | --- |
@@ -26,59 +26,51 @@ Norwegian Bokmål (nb) is the default. English (en) is secondary. There is no br
 | About | /om-oss | /en/about |
 | Contact | /kontakt | /en/contact |
 | Quote | /tilbud | /en/quote |
+| Privacy | /personvern | /en/privacy |
 
-`app/(norwegian)/layout.tsx` and `app/(english)/layout.tsx` are separate root layouts. Both reuse `components/document.tsx`, which renders the server-side document language and shared font. There is intentionally no top-level app/layout.tsx.
+Norwegian Bokmål (`nb`) is the default and English (`en`) is secondary. Separate localized root layouts reuse `components/document.tsx`. `lib/i18n/routes.ts` maps equivalent pages; ordinary language-switch links load a new document without preserving form state. There is no language cookie or automatic browser-language redirect.
 
-Switching languages loads a new document and does not preserve in-memory form state. `components/language-switcher.tsx` uses ordinary links and equivalent-page URLs in `lib/i18n/routes.ts`; it needs no client JavaScript.
+Route files select a page ID and locale and render shared page components. Dictionaries in `content/nb.ts` and `content/en.ts` hold page content and metadata under the typed `content/types.ts` contract. The client quote form receives only localized form content. The unused foundation component and placeholder entries are legacy infrastructure, not public pages.
 
-Route files select a page ID and locale. `components/foundation-page.tsx` renders the shared placeholder presentation. `content/types.ts` defines the dictionary contract; `content/nb.ts` and `content/en.ts` provide all page content and language labels. These are consumed by server components; avoid importing the full dictionaries into future client components.
+## Production URLs and indexing
 
-To add a page, extend PageId, the route map, both dictionaries, and the two thin route entries. TypeScript checks completeness of the route map and dictionaries.
+`lib/site-config.ts` centralizes URL validation and indexing. `SITE_URL` is the sole source of emitted absolute URLs. Set it to `https://vasky-renhold.no` in production and, when production canonical metadata is desired, previews. A final `/` is accepted. Other origins, credentials, paths, queries, and fragments fail explicitly. No localhost or preview-host canonicals are emitted. If unset, absolute metadata and business JSON-LD are omitted and indexing stays off.
 
-## Metadata and domain configuration
+Indexing requires **all** of the following:
 
-`lib/metadata.ts` generates localized titles and descriptions. Development placeholders are deliberately noindex, follow; review this policy when approved real content replaces them.
+```text
+SITE_URL=https://vasky-renhold.no
+SITE_DEPLOYMENT_ENV=production
+SITE_INDEXING_ENABLED=true
+NODE_ENV=production
+```
 
-Set the server-side environment variable `SITE_URL` to the approved production origin when known. Do not include credentials, a subpath, query, or fragment. Do not commit environment files.
+Next.js supplies `NODE_ENV=production` for a production build; that alone never enables indexing. Set `SITE_DEPLOYMENT_ENV=preview` or leave it unset for non-production deployments. Keep `SITE_INDEXING_ENABLED=false` or unset throughout pre-launch verification, including on production. Non-production Vercel `VERCEL_ENV` and Netlify `CONTEXT` values veto indexing even if production flags leaked. Scope production flags to the actual production deployment. Other platforms must set the correct deployment designation explicitly. Do not commit environment files.
 
-Without SITE_URL, canonical and language-alternate tags are omitted. No production domain, localhost canonical, or preview-domain fallback is invented. With SITE_URL, each page receives its own canonical URL and reciprocal nb/en alternates from the route map. Invalid configuration fails explicitly. Because pages are prerendered, rebuild after changing SITE_URL.
+When indexing is disabled, pages emit `noindex, follow`, the sitemap is empty, and robots does not advertise it. Robots allows public HTML and rendering assets so crawlers can see noindex, and disallows `/api/`. A blanket robots block would hide the noindex directive. Indexing controls are not access controls; private previews need hosting authentication separately.
 
-## Shared visual foundation
+When enabled, pages emit `index, follow`, robots advertises `https://vasky-renhold.no/sitemap.xml`, and the sitemap contains exactly fourteen canonical public URLs with language alternates. No fabricated last-modified dates, priorities, or change frequencies are emitted.
 
-`components/site-shell.tsx` composes the skip link, header, focusable main landmark, and footer. The skip link is visually clipped during normal browsing and becomes visible above the header on focus, retaining screen-reader access and the shared focus ring. Placeholder pages supply the locale and page identity so navigation and language links remain accurate without inspecting the browser URL.
+Metadata, sitemap, robots, and JSON-LD are produced by the build. **Rebuild after changing these settings.** Do not reuse an indexing-enabled artifact on a preview: runtime environment changes do not regenerate static metadata. Hosting robots headers can impose additional restrictions and must be verified live.
 
-All shell components are server components. Mobile navigation uses native details/summary: Enter or Space toggles it, the browser exposes expanded/collapsed state, and closed links leave the tab order. It expands in document flow with no overlay or focus trap. There is no custom Escape-to-close behavior. Language and navigation links load documents normally. No client component or additional dependency is needed.
+## Search, sharing, and structured data
 
-`components/button.tsx` provides Button for actions (default type=button) and ButtonLink for navigation, each with primary, secondary, and text variants. Add client boundaries only when a future action needs browser-side behavior.
+`lib/metadata.ts` supplies unique bilingual titles/descriptions, self canonicals, reciprocal `nb`/`en` alternates, and `x-default` pointing to the Norwegian equivalent. Canonicals use no trailing slash, including the root origin, matching Next.js output; visiting `/` is the same root URL. Open Graph uses `nb_NO`/`en_US`, reciprocal alternate locale, type `website`, and Vasky site name. Generic Twitter cards use `summary_large_image`; no X account is claimed. Pricing descriptions derive rates from shared pricing data.
 
-`app/globals.css` owns the forest/warm-stone tokens, spacing, typography, container widths, borders, radii, focus rings, and responsive shell rules. Geist Sans remains the font. Mobile disclosure is used below 70rem, including tablets; desktop navigation appears when there is room for both languages. No automatic dark theme is applied.
+`lib/structured-data.ts` emits `LocalBusiness` JSON-LD on both homepages, with a shared identity, the three localized services, verified contact details, organisation identifier, public postal code/locality/country, and service-area text. No street address, coordinates, hours, price range, ratings, reviews, or social identity is invented. Script serialization escapes `<`. Partial public address information may not qualify for every Google rich-result feature; do not publish private information to satisfy a validator.
 
-Measured WCAG contrast ratios:
+`lib/social-image.ts` references the approved existing services photograph unchanged (1672 × 941). An approved dedicated 1200 × 630 Vasky image with the brand and tagline remains an asset handoff item. The default framework favicon was removed. Supply a suitable approved square Vasky favicon as `app/favicon.ico` or `app/icon.png` (48 × 48 or larger recommended), plus an Apple touch icon if desired. The wide wordmark was not distorted into an icon. No manifest is currently supplied.
 
-| Foreground / background | Ratio |
-| --- | --- |
-| Main text / warm background | 13.84:1 |
-| Main text / sage surface | 12.36:1 |
-| Muted text / warm background | 6.05:1 |
-| Muted text / sage surface | 5.40:1 |
-| Warm white / forest button | 9.02:1 |
-| Warm white / forest hover | 11.34:1 |
-| Forest / sage surface | 8.06:1 |
-| Control border / warm background | 4.30:1 |
-| Control border / sage surface | 3.84:1 |
+## Presentation and business facts
 
-Subtle separators are decorative, not control boundaries. Focus uses a white inner ring and forest outer outline so a contrasting ring remains visible on dark and light surfaces; forced-colors mode uses the system Highlight color. Current links use underlining and weight as well as color. Controls have at least 44px targets, button heights can grow with wrapped text, and reduced motion removes button transitions.
+The shared shell retains the approved skip link, header, native mobile disclosure, main landmark, footer, spacing, typography, and focus treatment. Local Next/Image assets retain descriptive localized alt text, responsive sizes, and reserved dimensions/aspect ratios; the hero is preloaded and below-fold images are lazy-loaded.
 
-For UI verification, check both languages at narrow and intermediate widths, keyboard activation of the disclosure, closed-menu tab order, skip-link focus, text resizing, reduced motion, and language destinations. Automated checks do not replace screen-reader and real-device review.
+Services remain home cleaning, move-out cleaning, and window cleaning. Business enquiries are individually assessed, not a fourth standardized service. Existing services → pricing → quote paths and footer links expose the public routes without extra SEO links. The quote form sends server-validated enquiries through Resend and links to bilingual privacy information. No analytics or consent banner is installed.
 
-## Homepage
+Confirmed prices remain 499 kr/hour for home cleaning, 500 kr/hour for window cleaning, and the existing move-out bands, including VAT. Public contact is `post@vasky-renhold.no`; `website@vasky-renhold.no` remains the internal transactional sender. The internal npm package name `nordren` is not customer-facing branding.
 
-Both homepage routes render `components/home/home-page.tsx` inside the existing SiteShell. Hero, ServicesIntro, ServicePrinciples, Process, and QuoteCTA are server components with content from the typed `home` entries in the nb/en dictionaries. The route map supplies every CTA destination. All four service links currently lead to the localized services overview.
+## Checks after deployment
 
-`components/home/home.module.css` scopes the homepage layout without changing the header, footer, global tokens, or placeholder pages. Mobile uses a shallow photography reserve, full-width actions on small phones, and numbered process rows; wider screens use asymmetric columns and a horizontal process. There are no new animations, dependencies, or client components.
+While indexing remains off, verify HTTPS, preferred-hostname redirects, all fourteen pages, canonical/language tags, response headers, sitemap, robots, JSON-LD, and social images. Check provider-added behavior and complete the approved icon/social asset handoff. Confirm canonical social identity URLs before considering `sameAs`.
 
-The hero's empty sage area is an explicit photography reserve, hidden from assistive technology because it conveys no service information. Replace it with approved authentic photography and meaningful alt text in a later increment. No remote images are requested.
-
-Copy describes the approved service categories, service principles, and enquiry process. Business-owner review of wording remains necessary. No pricing, response time, location, review, certification, or guarantee has been invented. Quote and contact CTAs still lead to placeholder pages; forms and email delivery remain future work.
-
-Localized homepage titles/descriptions are updated. The existing noindex policy remains until the website and enquiry flow are approved for launch; configure the real production origin before enabling indexing.
+Only after live verification should production indexing be explicitly enabled and the site rebuilt. Verify the new output before submitting the sitemap to Search Console. Use Google's Rich Results Test and Schema Markup Validator without inventing missing facts. Check live Core Web Vitals and social previews. These instructions do not perform deployment or activate indexing.

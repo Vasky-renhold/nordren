@@ -1,4 +1,5 @@
 import type { Dictionary } from "./types";
+import { pricingRates } from "./pricing-data";
 
 export const en = {
   business: {
@@ -293,7 +294,7 @@ export const en = {
           "id": "home",
           "title": "Home cleaning",
           "description": "Cleaning for the rooms, kitchen and bathrooms in your home.",
-          "imageAlt": "A cleaner mopping a wooden floor in a bright living room."
+          "imageAlt": "A cleaned kitchen with wood-panelled walls, green cabinets and a wooden floor."
         },
         {
           "id": "move-out",
@@ -442,11 +443,11 @@ export const en = {
   },
   pages: {
     privacy: { heading: "Privacy & Cookies", title: "Privacy & Cookies | Vasky", description: "Information about personal data, quote enquiries and cookies on the Vasky website." },
-    home: { heading: "Vasky", title: "Vasky | Cleaning for homes and workplaces", description: "Cleaning for homes and workplaces. Explore home cleaning, move-out cleaning and window cleaning with Vasky." },
-    services: { heading: "Services", title: "Cleaning services | Vasky", description: "Explore home cleaning, move-out cleaning and window cleaning. Tell us what you need so we can clarify the scope before preparing a quote." },
-    pricing: { heading: "Pricing", title: "Pricing | Vasky", description: "View hourly rates for home and window cleaning, fixed move-out cleaning prices and additional services at Vasky." },
-    about: { heading: "About us", title: "About us | Vasky", description: "Learn about Vasky’s approach to cleaning: clear communication, respect for homes and workplaces, and an agreed scope before work begins." },
-    contact: { heading: "Contact", title: "Contact | Vasky", description: "Prepare a cleaning enquiry for Vasky. Learn which details are helpful and how we discuss your needs and practical arrangements." },
-    quote: { heading: "Request a quote", title: "Request a quote | Vasky", description: "Describe the cleaning you need and share the key details about the work." },
+    home: { heading: "Vasky", title: "Cleaning in Oslo and nearby areas | Vasky", description: "Vasky offers home cleaning, move-out cleaning and window cleaning in Oslo and nearby areas. Explore our services and prices, or request a quote." },
+    services: { heading: "Services", title: "Home, move-out and window cleaning | Vasky", description: "Explore Vasky's residential cleaning services in Oslo and nearby areas. See what home cleaning, move-out cleaning and window cleaning include." },
+    pricing: { heading: "Pricing", title: "Home, move-out and window cleaning prices | Vasky", description: `Home cleaning ${pricingRates.homeHourly} NOK/hour and window cleaning ${pricingRates.windowHourly} NOK/hour. View fixed move-out prices and additional services. All prices include VAT.` },
+    about: { heading: "About us", title: "About Vasky | Cleaning in Oslo and nearby areas", description: "Meet Vasky, based in Lommedalen, and learn about our approach to cleaning: care for your home, thorough work and clear agreements." },
+    contact: { heading: "Contact", title: "Contact Vasky | Cleaning in Oslo", description: "Call or email Vasky about cleaning in Oslo and nearby areas. We are based in 1350 Lommedalen. You can also send a cleaning quote enquiry." },
+    quote: { heading: "Request a quote", title: "Request a cleaning quote | Vasky", description: "Request a quote for home, move-out or window cleaning in Oslo and nearby areas. Tell Vasky about your property and cleaning needs using our form." },
   },
 } satisfies Dictionary;
