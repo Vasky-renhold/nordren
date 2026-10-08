@@ -22,7 +22,21 @@ type PageIntro = {
 
 type WorkingPrinciples = PageIntro & { items: readonly HomepageItem[] };
 
+export type ReviewsContent = {
+  heading: string;
+  countLabel: string;
+  profileLink: string;
+  newTab: string;
+  previous: string;
+  next: string;
+  carouselLabel: string;
+  rangeLabel: string;
+  ratingLabel: string;
+  translationLabel: string;
+};
+
 export type HomeContent = {
+  reviews: ReviewsContent;
   hero: {
     eyebrow: string;
     heading: string;

@@ -277,6 +277,18 @@ export const en = {
     },
 },
   home: {
+    reviews: {
+      heading: "What our customers say",
+      countLabel: "Based on {count} reviews on Mittanbud",
+      profileLink: "Read all reviews on Mittanbud",
+      newTab: "opens in a new tab",
+      previous: "Previous review",
+      next: "Next review",
+      carouselLabel: "Customer reviews from Mittanbud",
+      rangeLabel: "Showing reviews {first}–{last} of {total}",
+      ratingLabel: "{rating} out of 5 stars",
+      translationLabel: "Translated from Norwegian",
+    },
     hero: {
       eyebrow: "Cleaning in Oslo and nearby areas",
       heading: "Clean spaces. Trusted hands.",

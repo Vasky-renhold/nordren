@@ -10,6 +10,7 @@ import ts from "typescript";
 function harness(overrides = {}) {
   const env = {
     NODE_ENV: "production", SITE_URL: "https://vasky-renhold.no",
+    NETLIFY: "true", CONTEXT: "production",
     SITE_DEPLOYMENT_ENV: "production", SITE_INDEXING_ENABLED: "true", ...overrides,
   };
   const cache = new Map();
@@ -75,10 +76,10 @@ test("all 14 routes have unique metadata, self canonicals and reciprocal languag
 test("indexing is opt-in and development, previews and missing production settings stay noindex", () => {
   for (const env of [
     { SITE_INDEXING_ENABLED: undefined }, { SITE_INDEXING_ENABLED: "false" },
-    { SITE_INDEXING_ENABLED: "TRUE" }, { SITE_DEPLOYMENT_ENV: undefined },
-    { SITE_DEPLOYMENT_ENV: "preview" }, { SITE_URL: undefined },
+    { SITE_INDEXING_ENABLED: "TRUE" }, { SITE_URL: undefined },
     { NODE_ENV: "development" }, { NODE_ENV: "test" },
-    { VERCEL_ENV: "preview" }, { VERCEL_ENV: "development" },
+    { NETLIFY: undefined }, { NETLIFY: "false" },
+    { CONTEXT: undefined }, { CONTEXT: "" }, { CONTEXT: "dev" }, { CONTEXT: "unknown" },
     { CONTEXT: "deploy-preview" }, { CONTEXT: "branch-deploy" },
     { VERCEL_ENV: "production", CONTEXT: "deploy-preview" },
   ]) {
@@ -91,7 +92,34 @@ test("indexing is opt-in and development, previews and missing production settin
     assert.equal(h.robots().sitemap, undefined);
     assert.equal(h.robots().rules.allow, "/");
   }
-  assert.equal(harness({ VERCEL_ENV: "production", CONTEXT: "production" }).config.isSiteIndexingEnabled(), true);
+});
+
+test("Netlify production context is authoritative despite shared or stale platform flags", () => {
+  for (const env of [
+    {}, { SITE_DEPLOYMENT_ENV: undefined }, { SITE_DEPLOYMENT_ENV: "preview" },
+    { VERCEL_ENV: "preview" }, { VERCEL_ENV: "development" },
+  ]) {
+    const h = harness(env);
+    assert.equal(h.config.isSiteIndexingEnabled(), true);
+    assert.equal(h.sitemap().length, 14);
+    assert.equal(h.robots().sitemap, absolute("/sitemap.xml"));
+    for (const [page] of pairs) for (const locale of ["nb", "en"]) {
+      assert.equal(h.metadata.getPageMetadata(page, locale).robots.index, true);
+    }
+  }
+});
+
+test("previews preserve production canonicals, hreflang and structured identity while noindex", () => {
+  for (const CONTEXT of ["deploy-preview", "branch-deploy"]) {
+    const h = harness({ CONTEXT });
+    for (const [page, nb, en] of pairs) for (const [locale, route] of [["nb", nb], ["en", en]]) {
+      const metadata = h.metadata.getPageMetadata(page, locale);
+      assert.equal(metadata.robots.index, false);
+      assert.equal(metadata.alternates.canonical, absolute(route));
+      assert.deepEqual(plain(metadata.alternates.languages), { nb: absolute(nb), en: absolute(en), "x-default": absolute(nb) });
+    }
+    assert.deepEqual(plain(h.structured.getBusinessStructuredData("nb")), plain(harness().structured.getBusinessStructuredData("nb")));
+  }
 });
 
 test("SITE_URL normalizes the approved origin and rejects preview origins and malformed configuration", () => {

@@ -277,6 +277,18 @@ export const nb = {
     },
 },
   home: {
+    reviews: {
+      heading: "Hva kundene våre sier",
+      countLabel: "Basert på {count} vurderinger på Mittanbud",
+      profileLink: "Les alle vurderinger på Mittanbud",
+      newTab: "åpnes i en ny fane",
+      previous: "Forrige vurdering",
+      next: "Neste vurdering",
+      carouselLabel: "Kundevurderinger fra Mittanbud",
+      rangeLabel: "Viser vurdering {first}–{last} av {total}",
+      ratingLabel: "{rating} av 5 stjerner",
+      translationLabel: "Oversatt fra norsk",
+    },
     hero: {
       eyebrow: "Renhold i Oslo og nærliggende områder",
       heading: "Rene rom. Trygge hender.",

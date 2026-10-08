@@ -6,6 +6,7 @@ import { Hero } from "./hero";
 import { ServicesIntro } from "./services-intro";
 import { Process } from "./process";
 import { QuoteCTA } from "./quote-cta";
+import { ReviewsSection } from "@/components/reviews/reviews-section";
 import styles from "./home.module.css";
 
 export function HomePage({ locale }: { locale: Locale }) {
@@ -19,6 +20,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <Hero content={content.hero} locale={locale} />
         <ServicesIntro content={content.services} locale={locale} />
         <Process content={content.process} />
+        <ReviewsSection content={content.reviews} locale={locale} />
         <QuoteCTA content={content.quote} locale={locale} />
       </div>
     </SiteShell>

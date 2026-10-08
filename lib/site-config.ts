@@ -18,13 +18,12 @@ export function getSiteUrl(): URL | undefined {
 
 export function isSiteIndexingEnabled(): boolean {
   const siteUrl = getSiteUrl();
-  // Production builds are also used for previews. Require an explicit deployment
-  // designation and veto known preview contexts even if production flags leaked.
+  // Shared user variables cannot distinguish Netlify Free deployment contexts.
+  // Use Netlify's read-only build identity and context, and fail closed elsewhere.
   return Boolean(siteUrl) && process.env.NODE_ENV === "production" &&
-    process.env.SITE_DEPLOYMENT_ENV === "production" &&
     process.env.SITE_INDEXING_ENABLED === "true" &&
-    (!process.env.VERCEL_ENV || process.env.VERCEL_ENV === "production") &&
-    (!process.env.CONTEXT || process.env.CONTEXT === "production");
+    process.env.NETLIFY === "true" &&
+    process.env.CONTEXT === "production";
 }
 
 export function absoluteSiteUrl(path: string): string | undefined {
